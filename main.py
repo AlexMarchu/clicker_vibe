@@ -17,7 +17,9 @@ class RectangleButtons(pygame.sprite.Sprite):
 
 
 class Game:
+
     def __init__(self):
+
         pygame.init()
         pygame.display.set_caption('Clicker')
 
@@ -29,8 +31,8 @@ class Game:
             "usual_text_font": pygame.font.Font('assets/fonts/PressStart2P-Regular.ttf', 30),
             "settings_text_font": pygame.font.Font('assets/fonts/PressStart2P-Regular.ttf', 15),
             "settings_plus_minus_font": pygame.font.Font('assets/fonts/PressStart2P-Regular.ttf', 20),
-
         }
+
         self.screen = pygame.display.set_mode((self.width, self.height), pygame.SRCALPHA)
         self.buttons_bottom = pygame.sprite.Group()
         self.buttons_settings = pygame.sprite.Group()
@@ -41,51 +43,51 @@ class Game:
             "music_active",
             self.buttons_settings
         )
+
         self.BUTTON_SETTINGS_SOUND_ACTIVE = RectangleButtons(
-            (self.width // 7 * 4,
-             self.height // 7 + self.height // 27 * 2 + self.height // 70 * 3, 150, 30),
-             None,
+            (self.width // 7 * 4, self.height // 7 + self.height // 27 * 2 + self.height // 70 * 3, 150, 30),
+            None,
             "sound_active",
             self.buttons_settings
         )
+
         self.BUTTON_SETTINGS_MUSIC_VOLUME = RectangleButtons(
-            (self.width // 7 * 4,
-             self.height // 7 + self.height // 27 * 1 + self.height // 70 * 2, 150, 30),
+            (self.width // 7 * 4, self.height // 7 + self.height // 27 * 1 + self.height // 70 * 2, 150, 30),
             None,
             "music_volume",
             self.buttons_settings
         )
+
         self.BUTTON_SETTINGS_SOUND_VOLUME = RectangleButtons(
-            (self.width // 7 * 4,
-             self.height // 7 + self.height // 27 * 3 + self.height // 70 * 4, 150, 30),
+            (self.width // 7 * 4, self.height // 7 + self.height // 27 * 3 + self.height // 70 * 4, 150, 30),
             None,
             "sound_volume",
             self.buttons_settings
         )
-        self.BUTTON_PASSIVE_UPGRADES = RectangleButtons((0, self.height - 75, self.width // 4, 75),
-                                                        pygame.transform.scale(
-                                                            pygame.image.load('assets/images/passive_button.jpeg'),
-                                                            (self.width // 4, 75)),
-                                                        "passive_upgrades",
-                                                        self.buttons_bottom)
-        self.BUTTON_ACTIVE_UPGRADES = RectangleButtons((self.width // 4, self.height - 75, self.width // 4, 75),
-                                                       pygame.transform.scale(
-                                                           pygame.image.load('assets/images/active_button.jpeg'),
-                                                           (self.width // 4, 75)),
-                                                       "active_upgrades",
-                                                       self.buttons_bottom)
-        self.BUTTON_SETTINGS = RectangleButtons((self.width // 4 * 2, self.height - 75, self.width // 4, 75),
-                                                pygame.transform.scale(
-                                                    pygame.image.load('assets/images/setting_button.jpeg'),
-                                                    (self.width // 4, 75)),
-                                                "settings",
-                                                self.buttons_bottom)
-        self.BUTTON_LEADERBOARD = RectangleButtons((self.width // 4 * 3, self.height - 75, self.width // 4, 75),
-                                                   pygame.transform.scale(
-                                                       pygame.image.load('assets/images/leaders_button.jpeg'),
-                                                       (self.width // 4, 75)),
-                                                   "leaderboard",
-                                                   self.buttons_bottom)
+
+        self.BUTTON_PASSIVE_UPGRADES = RectangleButtons(
+            (0, self.height - 75, self.width // 4, 75),
+            pygame.transform.scale(pygame.image.load('assets/images/passive_button.jpeg'), (self.width // 4, 75)),
+            "passive_upgrades", self.buttons_bottom
+        )
+
+        self.BUTTON_ACTIVE_UPGRADES = RectangleButtons(
+            (self.width // 4, self.height - 75, self.width // 4, 75),
+            pygame.transform.scale(pygame.image.load('assets/images/active_button.jpeg'),
+                                   (self.width // 4, 75)), "active_upgrades", self.buttons_bottom
+        )
+
+        self.BUTTON_SETTINGS = RectangleButtons(
+            (self.width // 4 * 2, self.height - 75, self.width // 4, 75),
+            pygame.transform.scale(pygame.image.load('assets/images/setting_button.jpeg'),
+                                   (self.width // 4, 75)), "settings", self.buttons_bottom
+        )
+
+        self.BUTTON_LEADERBOARD = RectangleButtons(
+            (self.width // 4 * 3, self.height - 75, self.width // 4, 75),
+            pygame.transform.scale(pygame.image.load('assets/images/leaders_button.jpeg'),
+                                   (self.width // 4, 75)), "leaderboard", self.buttons_bottom
+        )
 
         self.opened_windows = {
             "passive_upgrades": False,
@@ -93,19 +95,23 @@ class Game:
             "settings": False,
             "leaderboard": False
         }
+
         self.passive_upgrades = {
             "click_multiply": 1.0,
             "general_multiply": 1.0,
         }
+
         self.active_upgrades = {
 
         }
+
         self.settings = {
             "music_active": True,
             "music_volume": 0.5,
             "sound_active": True,
             "sound_volume": 0.5,
         }
+
         self.game_is_paused = False
         self.counter = 0.0
         self.running = True
@@ -161,9 +167,11 @@ class Game:
                                         self.settings[str(j)] = max(self.settings[str(j)], 0.0)
 
             if sum(self.opened_windows.values()) == 1:
+
                 window = [i for i in self.opened_windows.keys() if self.opened_windows[i]][0]
                 # pygame.draw.rect(self.screen, (0, 0, 0, 0),
                 #                  (self.width // 7, self.height // 7, self.width // 7 * 5, self.height // 7 * 5))
+
                 if window == 'settings':
                     for i in range(0, len(self.settings)):
                         key = list(self.settings)[i]
@@ -180,15 +188,19 @@ class Game:
                                               self.height // 7 + self.height // 27 * i + self.height // 70 * (i + 1)))
                         else:
                             text_window_settings = self.fonts['settings_text_font'].render(
-                                f'{key}:{" " * 7 + "вкл." if self.settings[key] else " " * 7 + "выкл."}', 1, (255, 255, 255))
+                                f'{key}:{" " * 7 + "вкл." if self.settings[key] else " " * 7 + "выкл."}', 1,
+                                (255, 255, 255))
                             self.screen.blit(text_window_settings, (
                                 self.width // 7,
-                                self.height // 7 + self.height // 27 * (i) + self.height // 70 * (i + 1)))
+                                self.height // 7 + self.height // 27 * i + self.height // 70 * (i + 1)))
+
             self.flag_one_click = True
             self.buttons_bottom.draw(self.screen)
+
             text_counter = self.fonts["usual_text_font"].render(
                 f'деняк:{int(self.counter)}{"(мала)" if self.counter < 1_000_000 else "(многа)" if self.counter > 2_000_000 else "(средне)"}',
                 1, (255, 255, 255))
+
             self.screen.blit(text_counter, (30, 30))
             pygame.display.update()
 
