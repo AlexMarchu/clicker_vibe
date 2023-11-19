@@ -160,9 +160,9 @@ class Game:
         }
 
         self.active_upgrades = {
-            "double_click": (1, 10, "две деньга", 2),
-            "triple_click": (1, 50_000, "три деньга", 3),
-            "quadro_click": (1, 500_000, "четыре деньга", 4)
+            "double_click": (1, 1_000, "две деньга", 2),
+            "triple_click": (1, 10_000, "три деньга", 3),
+            "quadro_click": (1, 50_000, "четыре деньга", 4)
         }
 
         self.settings = {
